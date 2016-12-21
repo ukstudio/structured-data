@@ -1,0 +1,1 @@
+require 'structured_data'

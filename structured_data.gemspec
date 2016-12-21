@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'structured_data/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "structured_data"
+  spec.name          = "structured-data"
   spec.version       = StructuredData::VERSION
   spec.authors       = ["AKAMATSU Yuki"]
   spec.email         = ["y.akamatsu@ukstudio.jp"]
 
   spec.summary       = %q{A generator of structured data for SEO}
   spec.description   = %q{Generate JSON+LD for Google Structured Data}
-  spec.homepage      = "https://github.com/ukstudio/structured_data"
+  spec.homepage      = "https://github.com/ukstudio/structured-data"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
