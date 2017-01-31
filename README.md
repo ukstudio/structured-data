@@ -1,5 +1,6 @@
 # StructuredData
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8fcd07fae7064e0cae2e78aab004619f)](https://www.codacy.com/app/ukstudio/structured-data?utm_source=github.com&utm_medium=referral&utm_content=ukstudio/structured-data&utm_campaign=badger)
 [![CircleCI](https://circleci.com/gh/ukstudio/structured_data/tree/master.svg?style=svg)](https://circleci.com/gh/ukstudio/structured_data/tree/master)
 
 ## Installation
