@@ -1,55 +1,6 @@
-require 'action_controller'
-require 'action_view'
 require 'json'
 
 module StructuredData
-  module ViewHelper
-    def repository
-      @structured_data_repository ||= StructuredData::Repository.new
-    end
-
-    def breadcrumb_list
-      @breadcrumb_list ||= StructuredData::BreadcrumbList.new
-    end
-
-    def set_breadcrumb_item(url:, name:)
-      breadcrumb_list << { url: url, name: name }
-    end
-
-    def site_navigation_element
-      @site_navigation_element ||= StructuredData::SiteNavigationElement.new
-    end
-
-    def set_site_navigation_element(url:, name:)
-      site_navigation_element << { url: url, name: name }
-    end
-
-    def display_strctured_data
-      repository << breadcrumb_list unless breadcrumb_list.empty?
-      repository << site_navigation_element unless site_navigation_element.empty?
-
-      self.content_tag(:script, repository.dump.html_safe, type: 'application/ld+json')
-    end
-  end
-
-  module ControllerHelper
-    def breadcrumb_list
-      @breadcrumb_list ||= StructuredData::BreadcrumbList.new
-    end
-
-    def set_breadcrumb_item(url:, name:)
-      breadcrumb_list << { url: url, name: name }
-    end
-
-    def site_navigation_element
-      @site_navigation_element ||= StructuredData::SiteNavigationElement.new
-    end
-
-    def set_site_navigation_element(url:, name:)
-      site_navigation_element << { url: url, name: name }
-    end
-  end
-
   class Repository
     def initialize
       @items = []
@@ -134,5 +85,4 @@ module StructuredData
   end
 end
 
-ActionView::Base.send :include, StructuredData::ViewHelper
-ActionController::Base.send :include, StructuredData::ControllerHelper
+require 'structured_data/rails_extentions'
