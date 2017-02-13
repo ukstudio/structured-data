@@ -1,0 +1,142 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  Exclude: # 自動生成されるものや外部ライブラリは除外
+    - 'vendor/**/*'
+    - 'db/schema.rb'
+
+#
+# Style
+#
+
+# 日本人なので日本語で書きたいときもある
+Style/AsciiComments:
+  Enabled: false
+
+# case
+# when foo?
+# when bar?
+# end
+# のようなものはcaseで書いたほうが見やすい
+Style/EmptyCaseCondition:
+  Enabled: false
+
+# 明示的に else で nil を返すのはわかりやすいので許可
+Style/EmptyElse:
+  EnforcedStyle: empty
+
+# 複数行でも -> のほうがきれいに見えることが多い
+Style/Lambda:
+  EnforcedStyle: literal
+
+# 区切り文字が2個以上必須になる場合のみ_区切りを必須
+Style/NumericLiterals:
+  MinDigits: 7
+
+# ローカル変数とメソッド呼び出しの区別をつけたほうがわかりやすいことが多い
+Style/RedundantSelf:
+ Enabled: false
+
+# クォートはお好みで
+Style/StringLiterals:
+  Enabled: false
+
+# 意味的に先に否定のロジックを書いた方がわかりやすいケースもある
+Style/UnlessElse:
+  Enabled: false
+
+# 3.0で文字列がデフォルトでfrozenなのを信じてない
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/BlockDelimiters:
+  # メソッドチェインしている場合は複数行でも{}を使いたいので
+  # rubocop -a で変換されないよう除外
+  AutoCorrect: false
+  # expect { }.to で複数行xメソッドチェインが多発するので
+  # specを対象から除外する
+  Exclude:
+    - "spec/**/*.rb"
+
+# 公開ライブラリでもない限り、ドキュメントを書くことはほぼないと考える
+Style/Documentation:
+  Enabled: false
+
+# 代入の後改行したほうが横に長くなりづらく見やすい
+Style/MultilineAssignmentLayout:
+  Enabled: true
+
+# メソッドチェインで複数行になったときにインデントが長く横にのびるため
+# 出来る限り短くなるようにする
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+# メソッドチェインで複数行になったときにインデントが長く横にのびるため
+# 出来る限り短くなるようにする
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+#
+# Lint
+#
+
+# 使っていない変数を見つけたい
+Lint/UselessAssignment:
+  Enabled: true
+
+#
+# Metrics
+#
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/BlockNesting:
+  Max: 3
+
+Metrics/ClassLength:
+  CountComments: false
+  Max: 100
+
+Metrics/ModuleLength:
+  CountComments: false
+  Max: 100
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/LineLength:
+  Max: 120
+  AllowHeredoc: true
+  AllowURI: true
+  URISchemes:
+    - http
+    - https
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 30
+
+Metrics/BlockLength:
+  # rspec, routesは巨大なブロック不可避なので除外
+  Exclude:
+    - "spec/**/*.rb"
+    - "config/routes.rb"
+
+
+Metrics/ParameterLists:
+  Max: 5
+  CountKeywordArgs: true
+
+Metrics/PerceivedComplexity:
+  Max: 7
+
+#
+# Performance
+#
+
+# パフォーマンスのメリットよりcasecmpを使った時のわかりづらさのデメリットのほうが大きい
+Performance/Casecmp:
+  Enabled: false
+
