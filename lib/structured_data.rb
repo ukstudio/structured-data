@@ -16,12 +16,18 @@ module StructuredData
   end
 
   class BreadcrumbList
+    Item = Struct.new('Item', :url, :name)
+
     def initialize
       @items = []
     end
 
-    def <<(item)
+    def add(item)
       @items << item
+    end
+
+    def <<(item)
+      add(item)
     end
 
     def empty?
@@ -36,6 +42,14 @@ module StructuredData
 
       hash['itemListElement'] = items_to_hash
       JSON.pretty_generate(hash)
+    end
+
+    def each(&block)
+      @items.map { |i| Item.new(i[:url], i[:name]) }.each(&block)
+    end
+
+    def size
+      @items.size
     end
 
     private
