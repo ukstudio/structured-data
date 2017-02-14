@@ -1,7 +1,5 @@
 # StructuredData
 
-[![CircleCI](https://circleci.com/gh/ukstudio/structured_data/tree/master.svg?style=svg)](https://circleci.com/gh/ukstudio/structured_data/tree/master)
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -58,10 +56,16 @@ repo.dump
 
 ### Rails support
 
-Call the helper method in Controller or View
+```ruby
+# in controller or view
+breadcrumb_list do
+  add url: '/products', name: 'Product'
+  add url: '/products/tshirts, name: 'Tshirt'
+end
+```
 
 ```slim
-= set_breadcrumb_item(url: '/products', name: 'Products')
+= display_structured_data
 ```
 
 ## Contributing
