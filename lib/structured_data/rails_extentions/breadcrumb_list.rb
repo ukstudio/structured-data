@@ -7,12 +7,12 @@ module StructuredData
       end
 
       def breadcrumb_list(&block)
-        @breadcrumb_list ||= StructuredData::BreadcrumbList.new
+        @structured_data_breadcrumb_list ||= StructuredData::BreadcrumbList.new
 
         if block_given?
-          @breadcrumb_list.instance_eval(&block)
+          @structured_data_breadcrumb_list.instance_eval(&block)
         else
-          @breadcrumb_list
+          @structured_data_breadcrumb_list
         end
       end
 
